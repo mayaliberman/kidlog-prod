@@ -51,7 +51,7 @@ app.use(hpp());
 // app.use(express.static(path.join(__dirname, '../client/build')));
 
 //*****GENERAL ROUTEES*****
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   res.json({
     message: 'Welcome to the Kidlog project!',
   });
