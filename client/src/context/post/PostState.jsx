@@ -34,7 +34,6 @@ const PostState = (props) => {
   const [state, dispatch] = useReducer(postReducer, initialState);
 
   const getPosts = async () => {
-    console.log(process.env.REACT_APP_BASE_URL);
     setLoading();
     try {
       const response = await axios.get('/posts/myposts');
@@ -62,7 +61,6 @@ const PostState = (props) => {
     }
   };
   const getUnsplashPhoto = async () => {
-    console.log(process.env.REACT_APP_UNSPLASH_ACESS_KEY);
     setLoading();
     try {
       if (state.photos) {
