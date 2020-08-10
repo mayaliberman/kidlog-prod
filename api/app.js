@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const morganBody = require('morgan-body');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -47,27 +46,10 @@ app.use(xss());
 //Prevent parameter pollution
 app.use(hpp());
 
-//Serving static files - add this then building the client
-// app.use(express.static(path.join(__dirname, '../client/build')));
-
-//*****GENERAL ROUTEES*****
-// app.get('/', (req, res) => {
-//   res.json({
-//     message: 'Welcome to the Kidlog project!',
-//   });
-// });
-
 //*****OTHER ROUTEES*****
 app.use('/api/posts', postsRouter);
 app.use('/api/users', usersRouter);
 
-// if (process.env.NODE_ENV === 'production') {
-//   //set a static folder
-//   app.use(express.static('client/build'));
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-//   });
-// }
 // send 404 if no other route matched
 // app.all('*', (req, res, next) => {
 //   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
