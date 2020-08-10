@@ -32,10 +32,13 @@ const AuthState = (props) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post(`http://localhost:5000/api/users/signin`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/users/signin`,
+        {
+          email,
+          password,
+        }
+      );
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));
         const id = user.user.id;
@@ -71,13 +74,16 @@ const AuthState = (props) => {
     cookies.remove('auth', { path: '/' });
     cookies.remove('user', { path: '/' });
     try {
-      const res = await axios.post(`http://localhost:5000/api/users/signup`, {
-        firstName,
-        lastName,
-        email,
-        password,
-        passwordConfirm,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/users/signup`,
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+          passwordConfirm,
+        }
+      );
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));
 
@@ -104,7 +110,7 @@ const AuthState = (props) => {
     setUpdating();
     try {
       const res = await axiosService.patch(
-        `http://localhost:5000/api/users/updateMyPassword`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/updateMyPassword`,
         { passwordCurrent, password, passwordConfirm }
       );
 
@@ -134,7 +140,7 @@ const AuthState = (props) => {
   const forgotPassword = async (email) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/users/forgotPassword`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/forgotPassword`,
         {
           email,
         }
@@ -151,7 +157,7 @@ const AuthState = (props) => {
   const resetPassword = async (token, password, passwordConfirm) => {
     try {
       const res = await axios.patch(
-        `http://localhost:5000/api/users/resetPassword/${token}`,
+        `${process.env.REACT_APP_BASE_URL}/api/users/resetPassword/${token}`,
         { password, passwordConfirm }
       );
       if (res) {
