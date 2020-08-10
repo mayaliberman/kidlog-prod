@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import PostCard from './PostCard/PostCard.jsx';
-import Image from '../../assets/welcome-bg.png';
+import Image from '../../assets/welcome_bg.jpg';
 import Spinner from '../../components/ui/Spinner';
 import PostContext from '../../context/post/postContext';
 import LazyLoad from 'react-lazyload';

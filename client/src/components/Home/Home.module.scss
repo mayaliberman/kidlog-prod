@@ -4,11 +4,11 @@
 
 .content {
   @media (max-width: 375px) {
-    background-image: url('../../assets/bg.png');
+    background-image: url('../../assets/bg.jpg');
   }
   padding: 10px;
   color: $bg-paper;
-  background-image: url('../../assets/welcome-bg.png');
+  background-image: url('../../assets/welcome_bg.jpg');
   @include flexy($direction: column, $start: center);
   height: 100vh;
   text-align: center;
