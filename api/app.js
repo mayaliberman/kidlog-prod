@@ -61,9 +61,9 @@ app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 
 // send 404 if no other route matched
-app.all('*', (req, res, next) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
+// app.all('*', (req, res, next) => {
+//   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+// });
 
 app.use(globalErrorHandler);
 
