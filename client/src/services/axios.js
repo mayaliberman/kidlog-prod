@@ -1,9 +1,8 @@
 import axios from 'axios';
 import { getToken } from './cookies';
-import { BASE_URL } from '../config';
 import cookies from 'react-cookies';
 export default axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     'Cache-control': 'no-cache, no-store',
     Pragma: 'no-cache',

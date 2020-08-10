@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import Unsplash, { toJson } from 'unsplash-js';
-import { UNSPLASH_ACESS_KEY, UNSPLAH_SECRET_KEY, BASE_URL } from '../../config';
 import PostContext from './postContext';
 import postReducer from './postReducer';
 import {
