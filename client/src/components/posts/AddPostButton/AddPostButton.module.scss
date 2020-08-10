@@ -1,0 +1,42 @@
+@import '../../../styles//style.scss';
+
+.content {
+  box-sizing: border-box;
+  margin: 15px auto;
+  background-color: $bg-paper;
+  border-radius: 15px;
+  width: 60%;
+  box-shadow: $bx-shadow-card;
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 98%;
+  }
+}
+
+.header {
+  padding: 10px 15px;
+  @include flexy($justify: start);
+  height: 30px;
+  background-color: $card-header-bg;
+  color: $secondary-main;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.text {
+  padding: 15px;
+  @include flexy($justify: space-between);
+}
+
+.message {
+  flex-basis: 70%;
+  color: $secondary-main;
+}
+
+.button {
+  flex-basis: 20%;
+  @include button;
+}

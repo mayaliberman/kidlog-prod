@@ -1,0 +1,56 @@
+@import '../../../styles/style.scss';
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+}
+.content {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 115px auto;
+  background-color: $bg-paper;
+  border-radius: 15px;
+  width: 39%;
+  box-shadow: $bx-shadow-card;
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+
+.header {
+  padding: 10px 15px;
+  border-radius: 15px 15px 0px 0;
+  @include flexy($justify: space-between);
+  height: 30px;
+  background-color: $card-header-bg;
+  color: $secondary-main;
+  font-size: 12px;
+  font-weight: bold;
+  & span {
+    color: $black;
+  }
+}
+
+.text {
+  text-align: center;
+  padding: 15px;
+}
+
+.message {
+  font-weight: normal;
+  color: $secondary-main;
+}
+
+.subtext {
+  font-size: 18px;
+}

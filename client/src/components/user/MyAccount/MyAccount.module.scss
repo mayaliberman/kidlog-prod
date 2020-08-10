@@ -1,0 +1,93 @@
+@import '../../../styles/utilities/index.scss';
+
+.content {
+  padding-top: 20px;
+  box-sizing: border-box;
+  margin: 120px auto;
+  background-color: $bg-paper;
+  border-radius: 15px;
+  width: 39%;
+  box-shadow: $bx-shadow-card;
+  padding-bottom: 20px;
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+
+.header {
+  padding: 10px 15px;
+  @include flexy($justify: space-between);
+  height: 30px;
+  background-color: $card-header-bg;
+  color: $secondary-main;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 15px 15px 0px 0;
+  & span {
+    color: $black;
+  }
+}
+
+.avatar {
+  background-image: url('../../../assets/image-4.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+}
+.text {
+  text-align: center;
+  padding: 15px;
+  @include flexy($justify: center, $direction: column);
+}
+
+.kidContainer {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  border: none;
+  & img {
+    padding: 10px;
+  }
+  & span {
+    padding: 10px;
+    text-transform: uppercase;
+    color: $secondary-light;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+.passwordButton {
+  @include button;
+  background-color: $secondary-dark;
+  margin-top: 0px;
+}
+.exitButton {
+  @media (min-width: 1024px) {
+    display: none;
+  }
+  display: flex;
+  justify-content: center;
+  @include button;
+  width: 45%;
+  & img {
+    margin-right: 10px;
+  }
+}

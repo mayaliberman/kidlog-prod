@@ -1,0 +1,62 @@
+@import '../../../../styles/utilities/index.scss';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+}
+.content {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 200px auto;
+  background-color: $bg-paper;
+  border-radius: 15px;
+  width: 20%;
+  box-shadow: $bx-shadow-card;
+  @media (max-width: 1024px) {
+    width: 60%;
+  }
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+}
+
+.title {
+  text-align: center;
+  color: $secondary-main;
+  padding: 10px 20px;
+}
+
+.subtitle {
+  text-align: center;
+  color: $secondary-dark;
+  padding: 10px 20px;
+}
+
+.buttonArea {
+  border-top: 1px solid $border-transparent;
+  padding: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  color: $secondary-light;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:nth-child(2) {
+    color: $error;
+  }
+}

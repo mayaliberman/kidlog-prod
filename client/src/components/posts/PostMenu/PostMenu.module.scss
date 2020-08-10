@@ -1,0 +1,50 @@
+@import '../../../styles/style.scss';
+
+.box {
+  display: none;
+  position: absolute;
+  background-color: $bg-paper;
+  right: 7%;
+  width: 110px;
+  padding: 10px;
+  box-shadow: $bx-shadow-menu;
+  margin-top: 60px;
+  border-radius: 10px;
+  @media (min-width: 768px) {
+    right: 28%;
+  }
+  @media (min-width: 1024px) {
+    right: 32%;
+  }
+}
+.toggleBox {
+  display: block;
+}
+
+.notificationList {
+  margin: 0px;
+  list-style: none;
+  padding-left: 0px;
+  color: $black;
+  & li {
+    padding: 10px 0;
+    cursor: pointer;
+  }
+
+  & li:last-child {
+    color: $error;
+    border-top: 1px solid $border-transparent;
+  }
+}
+
+.editButton {
+  text-decoration: inherit;
+  color: $error;
+  font-size: $body2;
+}
+
+.deleteButton {
+  text-decoration: inherit;
+  color: $secondary-dark;
+  font-size: $body2;
+}

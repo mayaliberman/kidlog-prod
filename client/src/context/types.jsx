@@ -1,0 +1,36 @@
+//POSTS TYPES
+
+export const GET_POSTS = 'GET_POSTS';
+export const GET_UNSPLASH_PHOTOS = 'GET_UNSPLASH_PHOTOS';
+export const REMOVE_POST = 'REMOVE_POST';
+export const CURRENT_POST = ' CURRENT_POST';
+export const CREATE_POST = 'CREATE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const POST_ERROR = 'POST_ERROR';
+export const SET_LOADING = 'SET_LOADING';
+export const CLEAR_CURRENT_POST = 'CLEAR_CURRENT_POST';
+
+//USER & CHILD TYPES
+export const GET_USER_DATA = 'GET_USER_DATA';
+export const UPDATE_USER = 'UPDATE_USER';
+export const GET_CHILD = 'GET_CHILD';
+export const CREACT_CHILD = 'CREATE_CHILD';
+export const UPDATE_CHILD = 'UPDATE_CHILD';
+export const DELETE_CHILD = 'DELETE_CHILD';
+export const USER_ERROR = 'USER_ERROR';
+
+//AUTH TYPES
+export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const USER_LOADED = 'USER_LOADED';
+export const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const UPDATE_PASSWORD_FAIL = 'UPDATE_PASSWORD_FAIL';
+export const FORGOT_PASSWORD_FAIL = 'FORGOT_PASSWORD_FAIL';
+export const RESET_PASSWORD_FAIL = 'RESET_PASSWORD_FAIL';
+export const SET_UPDATING = 'SET_UPDATING';
+export const LOGOUT = 'LOGOUT';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAIL = 'REGISTER_FAIL';

@@ -1,0 +1,62 @@
+/* ============================================= */
+/*             Mixins                            */
+/* ============================================= */
+
+@mixin flexy(
+  $direction: row,
+  $justify: center,
+  $align: center,
+  $start: center,
+  $wrap: wrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  align-content: $start;
+  flex-wrap: $wrap;
+}
+
+@mixin button($padding: 15px) {
+  outline: none;
+  margin: 30px auto;
+  width: 100%;
+  color: $bg-paper;
+  text-decoration: none;
+  padding: $padding;
+  border-color: transparent;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: $primary-main;
+  &:hover {
+    outline: none;
+    background-color: $primary-light;
+    border-color: transparent;
+  }
+}
+
+@mixin input-white {
+  font-size: $body2;
+  margin-top: 20px;
+  color: $secondary-dark;
+  padding: 15px 20px;
+  background-color: $bg-paper;
+  display: inline-block;
+  border: none;
+  border-radius: 10px;
+  box-shadow: $bx-shadow-soft;
+
+  border-bottom: 1px solid $bg-paper;
+  box-sizing: border-box;
+  &:focus {
+    outline: none;
+    color: $secondary-dark;
+  }
+  &::placeholder {
+    font-size: 14px;
+    color: $secondary-light;
+  }
+}

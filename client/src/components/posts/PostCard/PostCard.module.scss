@@ -1,0 +1,80 @@
+@import '../../../styles/style.scss';
+
+.content {
+  box-sizing: border-box;
+  margin: 15px auto;
+  background-color: $bg-paper;
+  border-radius: 15px;
+  width: 60%;
+  box-shadow: $bx-shadow-card;
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 98%;
+  }
+}
+
+.header {
+  @include flexy;
+  padding: 10px 15px;
+  height: 70px;
+}
+
+.postInfo {
+  display: flex;
+  flex-grow: 15;
+}
+
+.avatar {
+  height: 40px;
+  padding-right: 10px;
+}
+
+h4.tagsTitle {
+  font-size: 18px;
+  margin: 0px;
+  color: $secondary-main;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+.lessonDesc {
+  margin: 0px;
+  font-weight: normal;
+  color: $secondary-dark-grey;
+}
+
+.more {
+  cursor: pointer;
+  position: relative;
+  padding: 10px;
+  margin-right: -20px;
+  flex-grow: 1;
+}
+
+.postPhoto {
+  border-radius: 15px;
+  width: 100%; /* width of container */
+  height: 375px; /* height of container */
+  object-fit: cover;
+  @media (max-width: 768px) {
+  }
+  @media (max-width: 480px) {
+  }
+}
+
+.photoFigure {
+  margin: 15px;
+}
+
+.description {
+  font-size: $body1;
+  color: $secondary-dark;
+  padding: 15px;
+  width: 95%;
+  margin: 0px;
+  text-align: left;
+}

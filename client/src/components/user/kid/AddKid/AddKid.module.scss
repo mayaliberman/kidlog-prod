@@ -1,0 +1,76 @@
+@import '../../../../styles/utilities/index.scss';
+
+.content {
+  padding-top: 60px;
+  color: $bg-paper;
+  background-color: $bg-default;
+  @include flexy($direction: column, $wrap: nowrap);
+  // height: 100vh;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 40px auto;
+  background-color: $bg-paper;
+  border-radius: 15px;
+  width: 39%;
+  box-shadow: $bx-shadow-card;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media (max-width: 1024px) {
+    width: 80%;
+  }
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+
+.subtitle {
+  font-size: 22px;
+  color: $secondary-main;
+  padding: 0 10px;
+  margin-bottom: 0px;
+  font-weight: normal;
+}
+.logoIcon {
+  height: 70px;
+  @media (max-width: 768px) {
+    height: 50px;
+  }
+}
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.button {
+  @include button;
+
+  //   margin: 20px;
+  width: 50%;
+}
+
+.addButton {
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  & img {
+    padding: 10px;
+  }
+  & span {
+    padding: 10px;
+    text-transform: uppercase;
+    color: $secondary-light;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}

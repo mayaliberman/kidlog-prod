@@ -1,0 +1,41 @@
+@import '../../../../styles/utilities/index.scss';
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  box-sizing: border-box;
+  margin: 15px auto;
+  padding: 0 15px;
+  background-color: $bg-paper;
+  border-radius: 10px;
+  width: 95%;
+  box-shadow: $bx-shadow-card;
+  height: 94px;
+}
+
+.edit {
+  cursor: pointer;
+  display: flex;
+  width: 70px;
+  align-items: center;
+  justify-content: space-evenly;
+  color: $secondary-light;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.avatar {
+  height: 70px;
+  border-radius: 50%;
+}
+.kid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & h2 {
+    padding-left: 15px;
+    color: $secondary-dark;
+    font-size: 18px;
+  }
+}

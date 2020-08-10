@@ -1,0 +1,65 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 2.25rem; //36px
+  line-height: 2.625rem;
+  @media (max-width: 375px) {
+    font-size: 1.5rem; //24px
+    line-height: 1.75rem;
+  }
+}
+h2 {
+  font-size: 1.5rem; //24px
+  font-weight: normal;
+  line-height: 1.75rem;
+  @media (max-width: 375px) {
+    font-size: 1.375rem;
+    line-height: 1.625rem; //21px
+  }
+}
+h3 {
+  font-weight: normal;
+  font-size: 1.125rem; //18px
+  line-height: 1.625rem; //21px
+  @media (max-width: 375px) {
+    font-size: 1.25rem; //20px
+    line-height: 1.4375rem; //23px
+  }
+}
+
+body {
+  font-size: 1rem;
+  line-height: 1.1875rem; //19px
+}
+
+h4 {
+  font-size: 0.9375rem; //15px
+  line-height: 1.5rem; //18px
+}
+h5 {
+  font-size: 1.14rem; //14px
+  font-weight: bold;
+  line-height: 1rem;
+  @media (max-width: 375px) {
+    font-weight: normal;
+  }
+}
+
+h6 {
+  font-size: 0.75rem; //12px
+  line-height: 0.875rem;
+  @media (max-width: 375px) {
+    font-size: 1.14rem; //14px
+    line-height: 1rem;
+  }
+}
+
+// $body1: 16px;
+// $body2: 14px;

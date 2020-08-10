@@ -1,0 +1,15 @@
+@import '../../../styles/style.scss';
+
+.postGallery {
+  // flex-grow: 6;
+  margin: 90px auto;
+  width: 65%;
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+}
+
+.container {
+  display: flex;
+}
