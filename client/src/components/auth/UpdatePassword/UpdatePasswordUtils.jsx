@@ -9,7 +9,7 @@ export const UpdatePasswordSchema = Yup.object().shape({
         return new Promise((resolve, reject) => {
           axios
             .post(
-              `${process.env.REACT_APP_BASE_URL}/users/validateCurrentPassword`,
+              `${process.env.REACT_APP_BASE_URL}/api/users/validateCurrentPassword`,
               {
                 passwordCurrent: value,
               }

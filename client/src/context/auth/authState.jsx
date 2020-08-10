@@ -32,7 +32,7 @@ const AuthState = (props) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post(`http://localhost:5000/users/signin`, {
+      const res = await axios.post(`http://localhost:5000/api/users/signin`, {
         email,
         password,
       });
@@ -71,7 +71,7 @@ const AuthState = (props) => {
     cookies.remove('auth', { path: '/' });
     cookies.remove('user', { path: '/' });
     try {
-      const res = await axios.post(`http://localhost:5000/users/signup`, {
+      const res = await axios.post(`http://localhost:5000/api/users/signup`, {
         firstName,
         lastName,
         email,
@@ -104,7 +104,7 @@ const AuthState = (props) => {
     setUpdating();
     try {
       const res = await axiosService.patch(
-        `http://localhost:5000/users/updateMyPassword`,
+        `http://localhost:5000/api/users/updateMyPassword`,
         { passwordCurrent, password, passwordConfirm }
       );
 
@@ -134,7 +134,7 @@ const AuthState = (props) => {
   const forgotPassword = async (email) => {
     try {
       const res = await axios.post(
-        `http://localhost:5000/users/forgotPassword`,
+        `http://localhost:5000/api/users/forgotPassword`,
         {
           email,
         }
@@ -151,7 +151,7 @@ const AuthState = (props) => {
   const resetPassword = async (token, password, passwordConfirm) => {
     try {
       const res = await axios.patch(
-        `http://localhost:5000/users/resetPassword/${token}`,
+        `http://localhost:5000/api/users/resetPassword/${token}`,
         { password, passwordConfirm }
       );
       if (res) {

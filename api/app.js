@@ -58,8 +58,8 @@ app.use(hpp());
 // });
 
 //*****OTHER ROUTEES*****
-app.use('/posts', postsRouter);
-app.use('/users', usersRouter);
+app.use('/api/posts', postsRouter);
+app.use('/api/users', usersRouter);
 
 if (process.env.NODE_ENV === 'production') {
   //set a static folder

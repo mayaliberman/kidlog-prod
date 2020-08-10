@@ -9,7 +9,7 @@ export const SignUpSchema = Yup.object().shape({
     .test('Unique Email', 'Email already in use', function (value) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`${process.env.REACT_APP_BASE_URL}/users/validateEmail`, {
+          .post(`${process.env.REACT_APP_BASE_URL}/api/users/validateEmail`, {
             email: value,
           })
           .then((res) => {

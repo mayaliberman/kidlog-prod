@@ -36,7 +36,7 @@ const PostState = (props) => {
   const getPosts = async () => {
     setLoading();
     try {
-      const response = await axios.get('/posts/myposts');
+      const response = await axios.get('/api/posts/myposts');
       dispatch({ type: GET_POSTS, payload: response.data.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response });
@@ -46,7 +46,7 @@ const PostState = (props) => {
   const createPost = async (body) => {
     setLoading();
     try {
-      await fetch(`${process.env.REACT_APP_BASE_URL}/posts`, {
+      await fetch(`${process.env.REACT_APP_BASE_URL}/api/posts`, {
         method: 'POST',
         body,
         headers: {
@@ -91,7 +91,7 @@ const PostState = (props) => {
     setLoading();
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/posts/${postId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/posts/${postId}`,
         {
           method: 'PATCH',
           body,
@@ -116,7 +116,7 @@ const PostState = (props) => {
   const updateDifficult = async (postId, body) => {
     try {
       const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/posts/update-difficult/${postId}`,
+        `${process.env.REACT_APP_BASE_URL}/api/posts/update-difficult/${postId}`,
         {
           method: 'PATCH',
           body: JSON.stringify(body),
@@ -144,7 +144,7 @@ const PostState = (props) => {
   const deletePost = async (postId) => {
     setLoading();
     try {
-      await axios.delete(`/posts/${postId}`);
+      await axios.delete(`/api/posts/${postId}`);
       dispatch({ DELETE_POST, payload: true });
       await getPosts();
       dispatch({ DELETE_POST, payload: false });

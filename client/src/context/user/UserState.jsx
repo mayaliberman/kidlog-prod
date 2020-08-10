@@ -30,7 +30,7 @@ const UserState = (props) => {
   const updateUser = async (body) => {
     setLoading();
     try {
-      const res = await axios.patch(`/users/updateMe`, body);
+      const res = await axios.patch(`/api/users/updateMe`, body);
       if (res) {
         dispatch({ type: UPDATE_USER, payload: true });
         setUser(res.data.data);
@@ -46,9 +46,9 @@ const UserState = (props) => {
     setLoading();
     try {
       const user = getUser();
-      const res = await axios.post(`/users/${body.user}/children`, body);
+      const res = await axios.post(`/api/users/${body.user}/children`, body);
       if (res) {
-        const user = await axios.get('/users/me');
+        const user = await axios.get('/api/users/me');
         setUser(user.data.data);
         dispatch({ SET_LOADING, payload: false });
       }
@@ -62,8 +62,8 @@ const UserState = (props) => {
     try {
       const { name, gender, birthYear } = body;
       const reqBody = { name, gender, birthYear };
-      await axios.patch(`/users/${body.user}/children/${body.id}`, reqBody);
-      const user = await axios.get('/users/me');
+      await axios.patch(`/api/users/${body.user}/children/${body.id}`, reqBody);
+      const user = await axios.get('/api/users/me');
       setUser(user.data.data);
       dispatch({ type: GET_CHILD, payload: [] });
       dispatch({ SET_LOADING, payload: false });
@@ -76,10 +76,10 @@ const UserState = (props) => {
     setLoading();
     try {
       const deleteChild = await axios.delete(
-        `/users/${userId}/children/${childId}`
+        `/api/users/${userId}/children/${childId}`
       );
       if (deleteChild) {
-        const user = await axios.get('/users/me');
+        const user = await axios.get('/api/users/me');
         setUser(user.data.data);
         dispatch({ type: GET_CHILD, payload: [] });
         dispatch({ SET_LOADING, payload: false });
