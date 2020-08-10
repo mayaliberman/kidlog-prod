@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import axios from '../../../services/axios';
-import { BASE_URL } from '../../../config';
 export const UpdatePasswordSchema = Yup.object().shape({
   passwordCurrent: Yup.string()
     .test(
@@ -9,9 +8,12 @@ export const UpdatePasswordSchema = Yup.object().shape({
       function (value) {
         return new Promise((resolve, reject) => {
           axios
-            .post(`${BASE_URL}/users/validateCurrentPassword`, {
-              passwordCurrent: value,
-            })
+            .post(
+              `${process.env.REACT_APP_BASE_URL}/users/validateCurrentPassword`,
+              {
+                passwordCurrent: value,
+              }
+            )
             .then((res) => {
               if (res.data.status === 'failed') {
                 resolve(false);

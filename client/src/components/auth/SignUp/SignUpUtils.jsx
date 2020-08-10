@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 import axios from 'axios';
-import { BASE_URL } from '../../../config';
+
 export const SignUpSchema = Yup.object().shape({
   firstName: Yup.string().required('Please add first name'),
   lastName: Yup.string().required('Please add last name'),
@@ -9,7 +9,9 @@ export const SignUpSchema = Yup.object().shape({
     .test('Unique Email', 'Email already in use', function (value) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`${BASE_URL}/users/validateEmail`, { email: value })
+          .post(`${process.env.REACT_APP_BASE_URL}/users/validateEmail`, {
+            email: value,
+          })
           .then((res) => {
             if (res.data.status === 'failed') {
               resolve(false);

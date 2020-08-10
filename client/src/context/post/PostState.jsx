@@ -17,8 +17,8 @@ import axios from '../../services/axios';
 import { getToken } from '../../services/cookies';
 
 const unsplash = new Unsplash({
-  accessKey: UNSPLASH_ACESS_KEY,
-  secret: UNSPLAH_SECRET_KEY,
+  accessKey: process.env.REACT_APP_UNSPLASH_ACESS_KEY,
+  secret: process.env.REACT_APP_UNSPLAH_SECRET_KEY,
 });
 
 const PostState = (props) => {
@@ -35,6 +35,7 @@ const PostState = (props) => {
   const [state, dispatch] = useReducer(postReducer, initialState);
 
   const getPosts = async () => {
+    console.log(process.env.REACT_APP_BASE_URL);
     setLoading();
     try {
       const response = await axios.get('/posts/myposts');
@@ -47,7 +48,7 @@ const PostState = (props) => {
   const createPost = async (body) => {
     setLoading();
     try {
-      await fetch(`${BASE_URL}/posts`, {
+      await fetch(`${process.env.REACT_APP_BASE_URL}/posts`, {
         method: 'POST',
         body,
         headers: {
@@ -62,6 +63,7 @@ const PostState = (props) => {
     }
   };
   const getUnsplashPhoto = async () => {
+    console.log(process.env.REACT_APP_UNSPLASH_ACESS_KEY);
     setLoading();
     try {
       if (state.photos) {
@@ -91,13 +93,16 @@ const PostState = (props) => {
   const updatePost = async (postId, body) => {
     setLoading();
     try {
-      const res = await fetch(`${BASE_URL}/posts/${postId}`, {
-        method: 'PATCH',
-        body,
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/posts/${postId}`,
+        {
+          method: 'PATCH',
+          body,
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
 
       if (res) {
         dispatch({ UPDATE_POST, payload: true });
@@ -113,14 +118,17 @@ const PostState = (props) => {
 
   const updateDifficult = async (postId, body) => {
     try {
-      const res = await fetch(`${BASE_URL}/posts/update-difficult/${postId}`, {
-        method: 'PATCH',
-        body: JSON.stringify(body),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      const res = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/posts/update-difficult/${postId}`,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(body),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
 
       if (res) {
         dispatch({ UPDATE_POST, payload: true });
