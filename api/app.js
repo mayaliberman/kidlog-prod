@@ -51,11 +51,11 @@ app.use(hpp());
 // app.use(express.static(path.join(__dirname, '../client/build')));
 
 //*****GENERAL ROUTEES*****
-app.get('/', (req, res) => {
-  res.json({
-    message: 'Welcome to the Kidlog project!',
-  });
-});
+// app.get('/', (req, res) => {
+//   res.json({
+//     message: 'Welcome to the Kidlog project!',
+//   });
+// });
 
 //*****OTHER ROUTEES*****
 app.use('/posts', postsRouter);
