@@ -32,6 +32,7 @@ const AuthState = (props) => {
 
   const login = async (email, password) => {
     try {
+      console.log(process.env.REACT_APP_BASE_URL);
       const res = await axios.post(
         `${process.env.REACT_APP_BASE_URL}/api/users/signin`,
         {
