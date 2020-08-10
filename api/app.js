@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const morganBody = require('morgan-body');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
@@ -60,6 +61,13 @@ app.get('/', (req, res) => {
 app.use('/posts', postsRouter);
 app.use('/users', usersRouter);
 
+if (process.env.NODE_ENV === 'production') {
+  //set a static folder
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 // send 404 if no other route matched
 // app.all('*', (req, res, next) => {
 //   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
