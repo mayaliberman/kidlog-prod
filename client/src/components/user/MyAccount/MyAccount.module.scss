@@ -86,7 +86,9 @@
   display: flex;
   justify-content: center;
   @include button;
-  width: 45%;
+  width: 90%;
+  background-color: $primary-dark;
+
   & img {
     margin-right: 10px;
   }

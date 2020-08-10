@@ -75,7 +75,7 @@ const KidForm = (props) => {
 
           <label htmlFor='name'>First Name</label>
           <Field name='name' type='text' className={input} />
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div>
             <div className={formSecondPart}>
               <ErrorMessage
                 name='birthYear'
