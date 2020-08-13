@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import axios from 'axios';
+import axios from '../../../services/axios';
 
 export const SignUpSchema = Yup.object().shape({
   firstName: Yup.string().required('Please add first name'),
@@ -9,7 +9,7 @@ export const SignUpSchema = Yup.object().shape({
     .test('Unique Email', 'Email already in use', function (value) {
       return new Promise((resolve, reject) => {
         axios
-          .post(`${process.env.REACT_APP_BASE_URL}/api/users/validateEmail`, {
+          .post(`/users/validateEmail`, {
             email: value,
           })
           .then((res) => {

@@ -1,8 +1,13 @@
 import axios from 'axios';
 import { getToken } from './cookies';
 import cookies from 'react-cookies';
+
+const baseURL =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_BASE_URL
+    : process.env.REACT_APP_DEV_BASE_URL;
 export default axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL,
   headers: {
     'Cache-control': 'no-cache, no-store',
     Pragma: 'no-cache',
@@ -14,7 +19,10 @@ export default axios.create({
       const token = getToken();
 
       if (token) headers['Authorization'] = `Bearer ` + token;
-
+      if (data instanceof FormData) {
+        headers['Content-Type'] = 'multipart/form-data';
+        return data;
+      }
       return JSON.stringify(data);
       // return data;
     },

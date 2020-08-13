@@ -8,12 +8,9 @@ export const UpdatePasswordSchema = Yup.object().shape({
       function (value) {
         return new Promise((resolve, reject) => {
           axios
-            .post(
-              `${process.env.REACT_APP_BASE_URL}/api/users/validateCurrentPassword`,
-              {
-                passwordCurrent: value,
-              }
-            )
+            .post(`/users/validateCurrentPassword`, {
+              passwordCurrent: value,
+            })
             .then((res) => {
               if (res.data.status === 'failed') {
                 resolve(false);

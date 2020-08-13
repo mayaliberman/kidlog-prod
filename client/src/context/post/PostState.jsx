@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import Unsplash, { toJson } from 'unsplash-js';
 import PostContext from './postContext';
 import postReducer from './postReducer';
+
 import {
   GET_POSTS,
   GET_UNSPLASH_PHOTOS,
@@ -36,7 +37,7 @@ const PostState = (props) => {
   const getPosts = async () => {
     setLoading();
     try {
-      const response = await axios.get('/api/posts/myposts');
+      const response = await axios.get('/posts/myposts');
       dispatch({ type: GET_POSTS, payload: response.data.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response });
@@ -45,14 +46,9 @@ const PostState = (props) => {
 
   const createPost = async (body) => {
     setLoading();
+    console.log(body);
     try {
-      await fetch(`${process.env.REACT_APP_BASE_URL}/api/posts`, {
-        method: 'POST',
-        body,
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      await axios.post(`/posts`, body);
 
       await getPosts();
       await getUnsplashPhoto();
@@ -90,16 +86,7 @@ const PostState = (props) => {
   const updatePost = async (postId, body) => {
     setLoading();
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/posts/${postId}`,
-        {
-          method: 'PATCH',
-          body,
-          headers: {
-            Authorization: `Bearer ${getToken()}`,
-          },
-        }
-      );
+      const res = await axios.patch(`/posts/${postId}`, body);
 
       if (res) {
         dispatch({ UPDATE_POST, payload: true });
@@ -115,17 +102,7 @@ const PostState = (props) => {
 
   const updateDifficult = async (postId, body) => {
     try {
-      const res = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/api/posts/update-difficult/${postId}`,
-        {
-          method: 'PATCH',
-          body: JSON.stringify(body),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${getToken()}`,
-          },
-        }
-      );
+      const res = await axios.patch(`/posts/update-difficult/${postId}`, body);
 
       if (res) {
         dispatch({ UPDATE_POST, payload: true });

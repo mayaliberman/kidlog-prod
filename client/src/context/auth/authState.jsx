@@ -1,9 +1,9 @@
 import React, { useReducer } from 'react';
-import axios from 'axios';
+
 import authReducer from './authReducer';
 import AuthContext from './authContext';
 import cookies from 'react-cookies';
-import axiosService from '../../services/axios';
+import axios from '../../services/axios';
 import {
   LOGIN_SUCCESS,
   USER_LOADED,
@@ -32,13 +32,10 @@ const AuthState = (props) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/users/signin`,
-        {
-          email,
-          password,
-        }
-      );
+      const res = await axios.post(`/users/signin`, {
+        email,
+        password,
+      });
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));
         const id = user.user.id;
@@ -74,16 +71,13 @@ const AuthState = (props) => {
     cookies.remove('auth', { path: '/' });
     cookies.remove('user', { path: '/' });
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/users/signup`,
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-          passwordConfirm,
-        }
-      );
+      const res = await axios.post(`/api/users/signup`, {
+        firstName,
+        lastName,
+        email,
+        password,
+        passwordConfirm,
+      });
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));
 
@@ -109,10 +103,11 @@ const AuthState = (props) => {
   const updatePassword = async (passwordCurrent, password, passwordConfirm) => {
     setUpdating();
     try {
-      const res = await axiosService.patch(
-        `${process.env.REACT_APP_BASE_URL}/api/users/updateMyPassword`,
-        { passwordCurrent, password, passwordConfirm }
-      );
+      const res = await axios.patch(`/users/updateMyPassword`, {
+        passwordCurrent,
+        password,
+        passwordConfirm,
+      });
 
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));
@@ -139,12 +134,9 @@ const AuthState = (props) => {
 
   const forgotPassword = async (email) => {
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/users/forgotPassword`,
-        {
-          email,
-        }
-      );
+      const res = await axios.post(`/users/forgotPassword`, {
+        email,
+      });
       if (res.data.status === 'success') {
         return true;
       }
@@ -156,10 +148,10 @@ const AuthState = (props) => {
 
   const resetPassword = async (token, password, passwordConfirm) => {
     try {
-      const res = await axios.patch(
-        `${process.env.REACT_APP_BASE_URL}/api/users/resetPassword/${token}`,
-        { password, passwordConfirm }
-      );
+      const res = await axios.patch(`/users/resetPassword/${token}`, {
+        password,
+        passwordConfirm,
+      });
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));
         const id = user.user.id;
