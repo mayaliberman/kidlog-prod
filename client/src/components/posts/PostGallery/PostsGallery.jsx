@@ -22,8 +22,7 @@ const PostsGallery = () => {
     user = getUser();
   }, [user]);
 
-  if (!user.children.length > 0) {
-    console.log('no kids');
+  if (!user?.children?.length > 0) {
     history.push('/add-kid');
   }
   const addPostButtonTogglePop = () => {

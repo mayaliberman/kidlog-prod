@@ -42,6 +42,7 @@ axios.interceptors.response.use(
     if (error?.response?.status === 401) {
       cookies.remove('auth', { path: '/' });
       cookies.remove('user', { path: '/' });
+      window.location.pathname = '/';
     }
     if (error?.response?.status === 500) {
       window.location.pathname = '/error';
