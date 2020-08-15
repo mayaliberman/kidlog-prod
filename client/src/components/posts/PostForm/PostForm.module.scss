@@ -104,7 +104,7 @@
     // border: none;
     padding: 10px 20px;
     border-radius: 10px;
-    box-shadow: $bx-shadow-soft;
+    box-shadow: $bx-shadow-hard;
   }
 }
 
@@ -166,8 +166,10 @@ label span input {
 }
 
 .selectInput {
-  margin-top: 12px;
   border: $bg-paper;
+  box-shadow: $bx-shadow-hard;
+  border-radius: 10px;
+  padding: 8px;
 }
 
 option {

@@ -45,7 +45,7 @@ const PostState = (props) => {
 
   const createPost = async (body) => {
     setLoading();
-    console.log(body);
+
     try {
       await axios.post(`/api/posts`, body);
 

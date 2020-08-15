@@ -170,9 +170,6 @@ const AddPostForm = (props) => {
                     />
                   </span>
                 </label>
-                {/* {errors.desc && touched.desc ? (
-                  <div className={inputErrors}>{errors.desc} </div>
-                ) : null} */}
               </div>
 
               <div className={secondPartForm}>

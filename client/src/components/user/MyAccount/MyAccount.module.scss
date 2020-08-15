@@ -31,7 +31,15 @@
     color: $black;
   }
 }
-
+.accountForm {
+  width: 280px;
+  @media (min-width: 480px) {
+    width: 300px;
+  }
+  @media (min-width: 768px) {
+    width: 400px;
+  }
+}
 .avatar {
   background-image: url('../../../assets/image-4.svg');
   background-repeat: no-repeat;

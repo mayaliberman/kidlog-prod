@@ -8,6 +8,7 @@ import {
   kidContainer,
   passwordButton,
   exitButton,
+  accountForm,
 } from './MyAccount.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -38,7 +39,7 @@ const MyAccount = () => {
     <div className={content}>
       <div className={text}>
         <div className={avatar}></div>
-        <div>
+        <div className={accountForm}>
           <AccountForm />
           <Link to='update-password'>
             <button className={passwordButton}>Update My Password</button>
