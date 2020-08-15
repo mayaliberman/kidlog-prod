@@ -14,7 +14,6 @@ import {
   CLEAR_CURRENT_POST,
 } from '../types';
 import axios from '../../services/axios';
-import { getToken } from '../../services/cookies';
 
 const unsplash = new Unsplash({
   accessKey: process.env.REACT_APP_UNSPLASH_ACESS_KEY,
@@ -37,7 +36,7 @@ const PostState = (props) => {
   const getPosts = async () => {
     setLoading();
     try {
-      const response = await axios.get('/posts/myposts');
+      const response = await axios.get('/api/posts/myposts');
       dispatch({ type: GET_POSTS, payload: response.data.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response });
@@ -48,7 +47,7 @@ const PostState = (props) => {
     setLoading();
     console.log(body);
     try {
-      await axios.post(`/posts`, body);
+      await axios.post(`/api/posts`, body);
 
       await getPosts();
       await getUnsplashPhoto();
@@ -86,7 +85,7 @@ const PostState = (props) => {
   const updatePost = async (postId, body) => {
     setLoading();
     try {
-      const res = await axios.patch(`/posts/${postId}`, body);
+      const res = await axios.patch(`/api/posts/${postId}`, body);
 
       if (res) {
         dispatch({ UPDATE_POST, payload: true });
@@ -102,7 +101,10 @@ const PostState = (props) => {
 
   const updateDifficult = async (postId, body) => {
     try {
-      const res = await axios.patch(`/posts/update-difficult/${postId}`, body);
+      const res = await axios.patch(
+        `/api/posts/update-difficult/${postId}`,
+        body
+      );
 
       if (res) {
         dispatch({ UPDATE_POST, payload: true });

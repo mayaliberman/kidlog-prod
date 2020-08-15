@@ -32,7 +32,7 @@ const AuthState = (props) => {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post(`/users/signin`, {
+      const res = await axios.post(`/api/users/signin`, {
         email,
         password,
       });
@@ -103,7 +103,7 @@ const AuthState = (props) => {
   const updatePassword = async (passwordCurrent, password, passwordConfirm) => {
     setUpdating();
     try {
-      const res = await axios.patch(`/users/updateMyPassword`, {
+      const res = await axios.patch(`/api/users/updateMyPassword`, {
         passwordCurrent,
         password,
         passwordConfirm,
@@ -134,7 +134,7 @@ const AuthState = (props) => {
 
   const forgotPassword = async (email) => {
     try {
-      const res = await axios.post(`/users/forgotPassword`, {
+      const res = await axios.post(`/api/users/forgotPassword`, {
         email,
       });
       if (res.data.status === 'success') {
@@ -148,7 +148,7 @@ const AuthState = (props) => {
 
   const resetPassword = async (token, password, passwordConfirm) => {
     try {
-      const res = await axios.patch(`/users/resetPassword/${token}`, {
+      const res = await axios.patch(`/api/users/resetPassword/${token}`, {
         password,
         passwordConfirm,
       });
