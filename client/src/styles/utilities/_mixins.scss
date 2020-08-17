@@ -45,11 +45,13 @@
   padding: 15px 20px;
   background-color: $bg-paper;
   display: inline-block;
+  @media (min-width: 1024px) {
+    border: none;
+    border-bottom: 1px solid $bg-paper;
+  }
   border: none;
   border-radius: 10px;
   box-shadow: $bx-shadow-hard;
-
-  border-bottom: 1px solid $bg-paper;
   box-sizing: border-box;
   &:focus {
     outline: none;

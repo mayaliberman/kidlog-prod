@@ -18,9 +18,9 @@ import PostContext from '../../../context/post/postContext';
 import UserContext from '../../../context/user/userContext';
 import uploadIcon from '../../../assets/add-photo.svg';
 const AddPostSchema = Yup.object().shape({
-  desc: Yup.string().required('Required'),
-  lessonNum: Yup.number().required('Required'),
-  childId: Yup.string().required('Required'),
+  desc: Yup.string().required('Post Description is Required'),
+  lessonNum: Yup.number().required('Lesson Number is Required'),
+  childId: Yup.string().required("Child's Name is Required"),
   file: Yup.mixed(),
 });
 
