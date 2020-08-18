@@ -36,10 +36,12 @@ const EditKid = (props) => {
           <img src={exitIcon} alt='exit-icon' />
         </Link>
       </div>
-      <KidForm
-        childValue={values || ''}
-        cancel={() => history.push('/my-account')}
-      />
+      <div style={{ margin: '0 auto' }}>
+        <KidForm
+          childValue={values || ''}
+          cancel={() => history.push('/my-account')}
+        />
+      </div>
       {child[0] && (
         <div className={deleteSection}>
           <button

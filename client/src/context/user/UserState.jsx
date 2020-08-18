@@ -48,9 +48,10 @@ const UserState = (props) => {
       const user = getUser();
       const res = await axios.post(`/api/users/${body.user}/children`, body);
       if (res) {
+        dispatch({ type: UPDATE_USER, payload: true });
         const user = await axios.get('/api/users/me');
         setUser(user.data.data);
-        dispatch({ SET_LOADING, payload: false });
+        dispatch({ type: UPDATE_USER, payload: false });
       }
     } catch (err) {
       dispatch({ type: USER_ERROR, payload: err.response });
