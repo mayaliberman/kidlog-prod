@@ -60,7 +60,6 @@ const KidForm = (props) => {
 
             await updateChild(requestBody);
           } else {
-            console.log(requestBody);
             await createChild(requestBody);
           }
           props.cancel();

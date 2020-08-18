@@ -58,8 +58,13 @@ h4.tagsTitle {
 .postPhoto {
   border-radius: 15px;
   width: 100%; /* width of container */
-  height: 375px; /* height of container */
+  // height: 50%; /* height of container */
   object-fit: cover;
+  // overflow: hidden;
+  // width: 100%;
+  height: 375px;
+  background-size: cover;
+  background-position: center;
   @media (max-width: 768px) {
   }
   @media (max-width: 480px) {
