@@ -28,8 +28,11 @@
 }
 
 .avatar {
-  height: 40px;
+  height: 30px;
   padding-right: 10px;
+  @media (min-width: 768px) {
+    height: 40px;
+  }
 }
 
 h4.tagsTitle {
@@ -37,7 +40,7 @@ h4.tagsTitle {
   margin: 0px;
   color: $secondary-main;
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -45,14 +48,15 @@ h4.tagsTitle {
   margin: 0px;
   font-weight: normal;
   color: $secondary-dark-grey;
+  font-size: 12px;
 }
 
 .more {
   cursor: pointer;
   position: relative;
   padding: 10px;
-  margin-right: -20px;
-  flex-grow: 1;
+  margin-right: -10px;
+  // flex-grow: 1;
 }
 
 .postPhoto {

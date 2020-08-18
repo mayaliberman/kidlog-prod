@@ -17,11 +17,19 @@ import { getUser } from '../../../services/cookies';
 import PostContext from '../../../context/post/postContext';
 import UserContext from '../../../context/user/userContext';
 import uploadIcon from '../../../assets/add-photo.svg';
+const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
+
 const AddPostSchema = Yup.object().shape({
-  desc: Yup.string().required('Post Description is Required'),
-  lessonNum: Yup.number().required('Lesson Number is Required'),
-  childId: Yup.string().required("Child's Name is Required"),
-  file: Yup.mixed(),
+  desc: Yup.string().required('**Post Description is Required'),
+  lessonNum: Yup.number().required('**Lesson Number is Required'),
+  childId: Yup.string().required("**Child's Name is Required"),
+  file: Yup.mixed()
+    .required('**Add a photo')
+    .test(
+      'fileFormat',
+      '**Please upload a photo only',
+      (value) => value && SUPPORTED_FORMATS.includes(value.type)
+    ),
 });
 
 const AddPostForm = (props) => {
@@ -32,6 +40,7 @@ const AddPostForm = (props) => {
 
   const [loadingImage, setLoadingImage] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
+
   let uploadImageIcon;
   let user = getUser();
   useEffect(() => {
@@ -47,6 +56,8 @@ const AddPostForm = (props) => {
       setLoadingImage(false);
       await setPreviewImage(reader.result);
     };
+    reader.readAsText(previewImage);
+
     await reader.readAsDataURL(file);
     setLoadingImage(false);
   };
@@ -165,12 +176,16 @@ const AddPostForm = (props) => {
                       id='file'
                       onChange={(e) => {
                         setFieldValue('file', e.currentTarget.files[0]);
+                        console.log(values.file);
                         handleFileUpload(e);
                       }}
                     />
                   </span>
                 </label>
               </div>
+              {errors.file && touched.file ? (
+                <span className={descError}>{errors.file} </span>
+              ) : null}
 
               <div className={secondPartForm}>
                 <div className={inputSecondPart}>
@@ -188,6 +203,7 @@ const AddPostForm = (props) => {
                     <option value=''>Select a kid</option>
                     {options}
                   </Field>
+
                   {errors.childId && touched.childId ? (
                     <div className={inputErrors}>{errors.childId}</div>
                   ) : null}
