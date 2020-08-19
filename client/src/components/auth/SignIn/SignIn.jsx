@@ -25,7 +25,6 @@ const SignIn = () => {
   useEffect(() => {
     if (error) {
       setTimeout(() => clearErrors(), 3500);
-      console.log(error);
     }
   }, [error]);
   return (
@@ -34,13 +33,14 @@ const SignIn = () => {
       <Formik
         initialValues={{ email: '', password: '' }}
         validationSchema={SignInSchema}
-        onSubmit={(values) => {
-          return login(values.email, values.password);
+        onSubmit={(values, { resetForm }) => {
+          login(values.email, values.password);
+          resetForm({});
         }}
       >
         {({ errors, touched, isSubmitting }) => (
           <Form className={form}>
-            {error ? <div className={errorMessage}>{error.message}</div> : null}
+            {error ? <div className={errorMessage}>{error}</div> : null}
             <Field placeholder='Email' name='email' className={input} />
             <div
               className={

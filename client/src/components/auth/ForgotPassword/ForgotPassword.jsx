@@ -36,11 +36,12 @@ const ForgotPassword = () => {
       <Formik
         initialValues={{ email: '' }}
         validationSchema={ForgotPasswordSchema}
-        onSubmit={async (values) => {
+        onSubmit={async (values, { resetForm }) => {
           const res = await forgotPassword(values.email);
           if (res) {
             setEmailSent(true);
           }
+          resetForm({});
         }}
       >
         {({ errors, touched, isSubmitting, handleChange }) => (
