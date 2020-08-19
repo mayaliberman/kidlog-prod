@@ -50,9 +50,7 @@ const ForgotPassword = () => {
       >
         {({ errors, touched, isSubmitting, handleChange }) => (
           <Form className={form}>
-            {error ? (
-              <div className={errorMessage}>{error.data.message}</div>
-            ) : null}
+            {error ? <div className={errorMessage}>{error}</div> : null}
             <Field
               placeholder='Email'
               name='email'

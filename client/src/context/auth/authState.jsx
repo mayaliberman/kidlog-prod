@@ -95,7 +95,7 @@ const AuthState = (props) => {
         props.history.push('/add-kid');
       }
     } catch (err) {
-      dispatch({ type: REGISTER_FAIL, payload: err.response });
+      dispatch({ type: REGISTER_FAIL, payload: err.response.data.message });
     }
   };
 
@@ -127,7 +127,10 @@ const AuthState = (props) => {
         props.history.push('/my-account');
       }
     } catch (err) {
-      dispatch({ type: UPDATE_PASSWORD_FAIL, payload: err.response });
+      dispatch({
+        type: UPDATE_PASSWORD_FAIL,
+        payload: err.response.data.message,
+      });
     }
   };
 
@@ -140,7 +143,10 @@ const AuthState = (props) => {
         return true;
       }
     } catch (err) {
-      dispatch({ type: FORGOT_PASSWORD_FAIL, payload: err.response });
+      dispatch({
+        type: FORGOT_PASSWORD_FAIL,
+        payload: err.response.data.message,
+      });
       return false;
     }
   };
@@ -170,7 +176,10 @@ const AuthState = (props) => {
         props.history.push('/posts');
       }
     } catch (err) {
-      dispatch({ type: RESET_PASSWORD_FAIL, payload: err.response });
+      dispatch({
+        type: RESET_PASSWORD_FAIL,
+        payload: err.response.data.message,
+      });
     }
   };
 
