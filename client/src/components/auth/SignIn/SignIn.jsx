@@ -74,7 +74,11 @@ const SignIn = () => {
           </Form>
         )}
       </Formik>
-      <Link to='/forgot-password' className={forgotPassword}>
+      <Link
+        to='/forgot-password'
+        className={forgotPassword}
+        onClick={clearErrors}
+      >
         Forgot Password?
       </Link>
     </div>

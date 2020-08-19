@@ -23,13 +23,11 @@ const AddPostSchema = Yup.object().shape({
   desc: Yup.string().required('**Post Description is Required'),
   lessonNum: Yup.number().required('**Lesson Number is Required'),
   childId: Yup.string().required("**Child's Name is Required"),
-  file: Yup.mixed()
-    .required('**Add a photo')
-    .test(
-      'fileFormat',
-      '**Please upload a photo only',
-      (value) => value && SUPPORTED_FORMATS.includes(value.type)
-    ),
+  file: Yup.mixed().test(
+    'fileFormat',
+    '**Please upload a photo only',
+    (value) => value && SUPPORTED_FORMATS.includes(value.type)
+  ),
 });
 
 const AddPostForm = (props) => {
@@ -56,7 +54,6 @@ const AddPostForm = (props) => {
       setLoadingImage(false);
       await setPreviewImage(reader.result);
     };
-    reader.readAsText(previewImage);
 
     await reader.readAsDataURL(file);
     setLoadingImage(false);
