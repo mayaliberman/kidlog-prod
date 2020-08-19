@@ -23,7 +23,11 @@ const ForgotPassword = () => {
 
   const authContext = useContext(AuthContext);
   const { error, forgotPassword, clearErrors } = authContext;
-  useEffect(() => {}, [error]);
+  useEffect(() => {
+    if (error) {
+      setTimeout(() => clearErrors(), 3500);
+    }
+  }, [error]);
   return (
     <div className={content}>
       <img alt='company logo' src={logo} />
@@ -54,7 +58,6 @@ const ForgotPassword = () => {
               name='email'
               className={input}
               onChange={(e) => {
-                clearErrors();
                 handleChange(e);
               }}
             />

@@ -68,15 +68,15 @@ const SignIn = () => {
               {errors.password && touched.password && errors.password}
             </div>
 
-            <Link to='/forgot-password' className={forgotPassword}>
-              Forgot Password?
-            </Link>
             <button type='submit' disabled={isSubmitting} className={button}>
               Submit
             </button>
           </Form>
         )}
       </Formik>
+      <Link to='/forgot-password' className={forgotPassword}>
+        Forgot Password?
+      </Link>
     </div>
   );
 };

@@ -142,7 +142,7 @@ exports.forgotPassword = asyncHandler(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // 3) Send it to user's email
-  const resetURL = `${process.env.REACT_APP_BASE_URL}/reset-password/${resetToken}`;
+  const resetURL = `${process.env.BASE_URL}/reset-password/${resetToken}`;
 
   const message = `<p>Forgot your password? Submit your new password and passwordConfirm here on our <p><a href=${resetURL}>Kidlog App</a>\n<p>If you didn't forget your password, please ignore this email!<p>`;
 
