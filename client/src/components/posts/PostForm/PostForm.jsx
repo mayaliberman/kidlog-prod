@@ -17,17 +17,18 @@ import { getUser } from '../../../services/cookies';
 import PostContext from '../../../context/post/postContext';
 import UserContext from '../../../context/user/userContext';
 import uploadIcon from '../../../assets/add-photo.svg';
-const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
+const SUPPORTED_FORMATS = [
+  'image/jpg',
+  'image/jpeg',
+  'image/gif',
+  'image/png',
+  '',
+];
 
 const AddPostSchema = Yup.object().shape({
   desc: Yup.string().required('**Post Description is Required'),
   lessonNum: Yup.number().required('**Lesson Number is Required'),
   childId: Yup.string().required("**Child's Name is Required"),
-  file: Yup.mixed().test(
-    'fileFormat',
-    '**Please upload a photo only',
-    (value) => value && SUPPORTED_FORMATS.includes(value.type)
-  ),
 });
 
 const AddPostForm = (props) => {
@@ -171,15 +172,28 @@ const AddPostForm = (props) => {
                       type='file'
                       name='file'
                       id='file'
-                      onChange={(e) => {
-                        setFieldValue('file', e.currentTarget.files[0]);
-                        console.log(values.file);
-                        handleFileUpload(e);
-                      }}
+                      accept='image/*'
+                      // onChange={(e) => {
+                      //   if (
+                      //     SUPPORTED_FORMATS.includes(
+                      //       e.currentTarget.files[0].type
+                      //     )
+                      //   ) {
+                      //     console.log(e.currentTarget.files[0]);
+                      //     setFieldValue('file', e.currentTarget.files[0]);
+                      //     handleFileUpload(e);
+                      //   } else {
+                      //     //setUsestate
+                      //   }
+
+                      //   // error
+                      //   // setFieldValue('file', e.currentTarget.files[0]);
+                      // }}
                     />
                   </span>
                 </label>
               </div>
+              {console.log(errors)}
               {errors.file && touched.file ? (
                 <span className={descError}>{errors.file} </span>
               ) : null}

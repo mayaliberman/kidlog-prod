@@ -11,10 +11,10 @@ import {
 import CancelKidModal from '../CancelKidModal/CancelKidModal';
 import { Link } from 'react-router-dom';
 import exitIcon from '../../../../assets/Exit_icon.svg';
-const EditKid = (props) => {
+const EditKid = () => {
   let history = useHistory();
   const userContext = useContext(UserContext);
-  const { child, deleteChild } = userContext;
+  const { child, deleteChild, clearChild } = userContext;
 
   const [confirmDelete, setConfirmDelete] = useState(false);
   let values = '';
@@ -39,7 +39,10 @@ const EditKid = (props) => {
       <div style={{ margin: '0 auto' }}>
         <KidForm
           childValue={values || ''}
-          cancel={() => history.push('/my-account')}
+          cancel={() => {
+            // clearChild();
+            history.push('/my-account');
+          }}
         />
       </div>
       {child[0] && (
@@ -55,7 +58,10 @@ const EditKid = (props) => {
       {confirmDelete && (
         <CancelKidModal
           delete={deleteKid}
-          cancel={() => setConfirmDelete(false)}
+          cancel={() => {
+            setConfirmDelete(false);
+            // clearChild();
+          }}
         />
       )}
     </div>

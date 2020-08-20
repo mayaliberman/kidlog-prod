@@ -1,7 +1,13 @@
 import React, { useReducer } from 'react';
 import UserContext from './userContext';
 import userReducer from './userReducer';
-import { SET_LOADING, GET_CHILD, USER_ERROR, UPDATE_USER } from '../types';
+import {
+  SET_LOADING,
+  GET_CHILD,
+  USER_ERROR,
+  UPDATE_USER,
+  CLEAR_CHILD,
+} from '../types';
 import axios from '../../services/axios';
 import { setUser, getUser } from '../../services/cookies';
 
@@ -90,7 +96,8 @@ const UserState = (props) => {
     }
   };
   const setLoading = () => dispatch({ type: SET_LOADING });
-
+  const clearChild = () => dispatch({ type: CLEAR_CHILD });
+  //  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
   return (
     <UserContext.Provider
       value={{
@@ -104,6 +111,7 @@ const UserState = (props) => {
         updateUser,
         createChild,
         deleteChild,
+        clearChild,
       }}
     >
       {props.children}

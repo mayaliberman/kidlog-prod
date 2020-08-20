@@ -43,50 +43,22 @@ const SignUp = () => {
         {({ errors, touched, isSubmitting }) => (
           <>
             <div>
-              <div
-                className={error}
-                style={{
-                  display:
-                    errors.firstName && touched.firstName && errors.firstName
-                      ? 'block'
-                      : 'none',
-                }}
-              >
-                {errors.firstName && touched.firstName && errors.firstName}
-              </div>
-              <div
-                className={error}
-                style={{
-                  display:
-                    errors.lastName && touched.lastName && errors.lastName
-                      ? 'block'
-                      : 'none',
-                }}
-              >
-                {errors.lastName && touched.lastName && errors.lastName}
-              </div>
-              <div
-                className={error}
-                style={{
-                  display:
-                    errors.email && touched.email && errors.email
-                      ? 'block'
-                      : 'none',
-                }}
-              >
-                {errors.email && touched.email && errors.email}
-              </div>
-              <div
-                className={error}
-                style={{
-                  display:
-                    errors.password && touched.password && errors.password
-                      ? 'block'
-                      : 'none',
-                }}
-              >
-                {errors.password && touched.password && errors.password}
-              </div>
+              {Object.keys(errors).map((item) => {
+                return (
+                  <div
+                    key={item}
+                    className={error}
+                    style={{
+                      display:
+                        errors[item] && touched[item] && errors[item]
+                          ? 'block'
+                          : 'none',
+                    }}
+                  >
+                    {errors[item] && touched[item] && errors[item]}
+                  </div>
+                );
+              })}
               <div
                 className={error}
                 style={{

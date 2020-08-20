@@ -24,7 +24,7 @@ const Header = () => {
   useEffect(() => {
     user = getUser();
   }, [user]);
-  if (!user) header = <></>;
+  if (!user || window.location.pathname === '/add-kid') header = <></>;
   else
     header = (
       <div className={navHeader}>

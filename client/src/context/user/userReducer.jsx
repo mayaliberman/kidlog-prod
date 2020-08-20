@@ -1,4 +1,4 @@
-import { GET_CHILD, SET_LOADING, UPDATE_USER } from '../types';
+import { GET_CHILD, SET_LOADING, UPDATE_USER, CLEAR_CHILD } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -19,6 +19,12 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+
+    case CLEAR_CHILD:
+      return {
+        ...state,
+        child: null,
       };
     default:
       return state;

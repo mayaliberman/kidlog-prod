@@ -19,6 +19,7 @@ export const CREACT_CHILD = 'CREATE_CHILD';
 export const UPDATE_CHILD = 'UPDATE_CHILD';
 export const DELETE_CHILD = 'DELETE_CHILD';
 export const USER_ERROR = 'USER_ERROR';
+export const CLEAR_CHILD = 'CLEAR_CHILD';
 
 //AUTH TYPES
 export const AUTH_ERROR = 'AUTH_ERROR';

@@ -23,15 +23,15 @@ const MyAccount = () => {
   const userContext = useContext(UserContext);
   const authContext = useContext(AuthContext);
   const { logout } = authContext;
-  const { child } = userContext;
+  const { child, clearChild } = userContext;
 
   let user = getUser();
   useEffect(() => {
     user = getUser();
   }, [child, user]);
-  const [showEditChild, setShowEditChild] = useState(false);
-  const toggleEditChild = () => {
-    setShowEditChild(!showEditChild);
+  const [showForm, toggleForm] = useState(false);
+  const clickHandler = () => {
+    toggleForm(!showForm);
   };
 
   return (
@@ -50,12 +50,10 @@ const MyAccount = () => {
       </div>
       <div className={kidContainer}>
         <KidContainer />
-        {showEditChild && (
-          <KidForm cancel={toggleEditChild} childValue={child[0]} />
-        )}
+        {showForm && <KidForm cancel={clickHandler} />}
 
-        {!showEditChild && (
-          <button className={button} onClick={toggleEditChild}>
+        {!showForm && (
+          <button className={button} onClick={clickHandler}>
             <img src={PlusIcon} alt='add-child-icon' />
             <span>Add Kid</span>
           </button>
