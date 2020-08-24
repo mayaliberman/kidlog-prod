@@ -39,6 +39,7 @@ const AddPostForm = (props) => {
 
   const [loadingImage, setLoadingImage] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
+  const [imageValidation, setImageValidation] = useState(false);
 
   let uploadImageIcon;
   let user = getUser();
@@ -173,29 +174,27 @@ const AddPostForm = (props) => {
                       name='file'
                       id='file'
                       accept='image/*'
-                      // onChange={(e) => {
-                      //   if (
-                      //     SUPPORTED_FORMATS.includes(
-                      //       e.currentTarget.files[0].type
-                      //     )
-                      //   ) {
-                      //     console.log(e.currentTarget.files[0]);
-                      //     setFieldValue('file', e.currentTarget.files[0]);
-                      //     handleFileUpload(e);
-                      //   } else {
-                      //     //setUsestate
-                      //   }
-
-                      //   // error
-                      //   // setFieldValue('file', e.currentTarget.files[0]);
-                      // }}
+                      onChange={(e) => {
+                        setImageValidation(false);
+                        if (
+                          SUPPORTED_FORMATS.includes(
+                            e.currentTarget.files[0].type
+                          )
+                        ) {
+                          console.log(e.currentTarget.files[0]);
+                          setFieldValue('file', e.currentTarget.files[0]);
+                          handleFileUpload(e);
+                        } else {
+                          setImageValidation(true);
+                        }
+                      }}
                     />
                   </span>
                 </label>
               </div>
-              {console.log(errors)}
-              {errors.file && touched.file ? (
-                <span className={descError}>{errors.file} </span>
+
+              {imageValidation ? (
+                <span className={descError}>**Upload photo only </span>
               ) : null}
 
               <div className={secondPartForm}>
