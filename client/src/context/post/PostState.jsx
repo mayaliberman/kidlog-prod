@@ -12,6 +12,7 @@ import {
   UPDATE_POST,
   CURRENT_POST,
   CLEAR_CURRENT_POST,
+  REMOVE_LOADING,
 } from '../types';
 import axios from '../../services/axios';
 
@@ -52,7 +53,9 @@ const PostState = (props) => {
       await getPosts();
       await getUnsplashPhoto();
     } catch (err) {
-      dispatch({ type: POST_ERROR, payload: err.response });
+      dispatch({ type: POST_ERROR, payload: true });
+      removeLoading();
+      throw err;
     }
   };
   const getUnsplashPhoto = async () => {
@@ -96,6 +99,8 @@ const PostState = (props) => {
       }
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response });
+      removeLoading();
+      throw err;
     }
   };
 
@@ -134,6 +139,7 @@ const PostState = (props) => {
 
   const setLoading = () => dispatch({ type: SET_LOADING });
 
+  const removeLoading = () => dispatch({ type: REMOVE_LOADING });
   return (
     <PostContext.Provider
       value={{

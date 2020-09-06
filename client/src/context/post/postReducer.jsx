@@ -8,6 +8,7 @@ import {
   POST_ERROR,
   CURRENT_POST,
   CLEAR_CURRENT_POST,
+  REMOVE_LOADING,
 } from '../types';
 
 export default (state, action) => {
@@ -61,6 +62,11 @@ export default (state, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case REMOVE_LOADING:
+      return {
+        ...state,
+        loading: false,
       };
     case POST_ERROR:
       return {

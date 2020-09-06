@@ -36,7 +36,7 @@ const AddPostForm = (props) => {
   const userContext = useContext(UserContext);
   const { createPost, loading, currentPost, updatePost } = postContext;
   const { isUpdated } = userContext;
-
+  const [error, setError] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [imageValidation, setImageValidation] = useState(false);
@@ -135,12 +135,17 @@ const AddPostForm = (props) => {
             formData.set('childId', values.childId);
             formData.set('lessonNum', values.lessonNum);
             formData.append('image', values.file);
-
-            currentPost.childId
-              ? await updatePost(currentPost._id, formData)
-              : await createPost(formData);
-
-            props.submit();
+            try {
+              currentPost.childId
+                ? await updatePost(currentPost._id, formData)
+                : await createPost(formData);
+              props.submit();
+            } catch (err) {
+              setError(true);
+              setTimeout(() => {
+                setError(false);
+              }, 2000);
+            }
           }}
         >
           {({
@@ -181,7 +186,6 @@ const AddPostForm = (props) => {
                             e.currentTarget.files[0].type
                           )
                         ) {
-                          console.log(e.currentTarget.files[0]);
                           setFieldValue('file', e.currentTarget.files[0]);
                           handleFileUpload(e);
                         } else {
@@ -233,6 +237,13 @@ const AddPostForm = (props) => {
                   ) : null}
                 </div>
               </div>
+              {error ? (
+                <div className={inputErrors}>
+                  <h6 style={{ paddingLeft: '30px' }}>
+                    **Sorry.....Something went wrong:)
+                  </h6>
+                </div>
+              ) : null}
               <button type='submit' className={button} disabled={isSubmitting}>
                 {props.submitButton}
               </button>
@@ -244,17 +255,3 @@ const AddPostForm = (props) => {
   }
 };
 export default AddPostForm;
-
-{
-  /* <input type="file" accept="image/*" onchange="loadFile(event)">
-<img id="output"/>
-<script>
-  var loadFile = function(event) {
-    var output = document.getElementById('output');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) // free memory
-    }
-  };
-</script> */
-}

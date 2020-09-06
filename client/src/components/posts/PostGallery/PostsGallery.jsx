@@ -11,20 +11,20 @@ import { useHistory } from 'react-router-dom';
 
 const PostsGallery = () => {
   const postContext = useContext(PostContext);
-  const { currentPost, clearCurrentPost } = postContext;
+  const { currentPost, clearCurrentPost, error } = postContext;
   const [editPopup, setEditPopup] = useState(false);
   const [addButtonPopup, setAddButtonPopup] = useState(false);
   const [feedbackPost, setFeedbackPost] = useState(false);
   const [ThankYouPopup, setThankYouPopup] = useState(false);
   const history = useHistory();
-  let user = getUser();
+  let user;
   useEffect(() => {
     user = getUser();
-  }, [user]);
+    if (!user?.children?.length > 0) {
+      history.push('/add-kid');
+    }
+  }, [user, error]);
 
-  if (!user?.children?.length > 0) {
-    history.push('/add-kid');
-  }
   const addPostButtonTogglePop = () => {
     setAddButtonPopup(true);
   };

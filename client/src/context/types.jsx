@@ -9,6 +9,7 @@ export const UPDATE_POST = 'UPDATE_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const POST_ERROR = 'POST_ERROR';
 export const SET_LOADING = 'SET_LOADING';
+export const REMOVE_LOADING = 'REMOVE_LOADING';
 export const CLEAR_CURRENT_POST = 'CLEAR_CURRENT_POST';
 
 //USER & CHILD TYPES
