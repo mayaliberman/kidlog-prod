@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import {
   content,
@@ -104,7 +104,7 @@ const SignUp = () => {
               />
               <ReCAPTCHA
                 style={{ marginTop: '20px' }}
-                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                sitekey={`${process.env.REACT_APP_RECAPTCHA_SITE_KEY}`}
                 onChange={(e) => {
                   setFieldValue('recaptcha', e);
                 }}
