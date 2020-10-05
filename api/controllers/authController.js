@@ -1,5 +1,7 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
+const fetch = require('node-fetch');
+const { stringify } = require('querystring');
 const jwt = require('jsonwebtoken');
 const sgMail = require('@sendgrid/mail');
 const User = require('../models/user');
@@ -48,15 +50,30 @@ exports.validateEmail = asyncHandler(async (req, res, next) => {
 
 exports.signup = asyncHandler(async (req, res, next) => {
   try {
-    const newUser = await User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      passwordConfirm: req.body.passwordConfirm,
-      role: req.body.role,
+    if (!req.body.recaptcha) {
+      return next(new AppError('Please fill the recaptcha', 400));
+    }
+
+    const query = stringify({
+      secret: process.env.RECAPTCHA_SECRET_KEY,
+      response: req.body.recaptcha,
+      remoteip: req.connection.remoteAddress,
     });
-    createSendToken(newUser, 201, res);
+    const verifyURL = `https://google.com/recaptcha/api/siteverify?${query}`;
+    const body = await fetch(verifyURL).then((res) => res.json());
+    if (body.success !== undefined && !body.success) {
+      next(new AppError('Failed captcha verification', 400));
+    } else {
+      const newUser = await User.create({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        role: req.body.role,
+      });
+      createSendToken(newUser, 201, res);
+    }
   } catch (err) {
     err.status = 'email';
     err.statusCode = 400;

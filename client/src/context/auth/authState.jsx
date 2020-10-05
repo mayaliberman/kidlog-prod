@@ -64,7 +64,8 @@ const AuthState = (props) => {
     lastName,
     email,
     password,
-    passwordConfirm
+    passwordConfirm,
+    recaptcha
   ) => {
     dispatch({ type: LOGOUT });
     cookies.remove('auth', { path: '/' });
@@ -76,6 +77,7 @@ const AuthState = (props) => {
         email,
         password,
         passwordConfirm,
+        recaptcha,
       });
       if (res) {
         const user = JSON.parse(atob(res.data.token.split('.')[1]));

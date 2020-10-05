@@ -27,4 +27,5 @@ export const SignUpSchema = Yup.object().shape({
   passwordConfirm: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Please add password confrim'),
+  recaptcha: Yup.string().required('Please fill the reCaptcha'),
 });

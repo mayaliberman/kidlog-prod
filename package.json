@@ -38,8 +38,10 @@
     "morgan-body": "^2.5.1",
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^4.0.0",
+    "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
+    "querystring": "^0.2.0",
     "validator": "^10.11.0",
     "xss-clean": "^0.1.1"
   },

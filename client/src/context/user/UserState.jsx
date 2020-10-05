@@ -97,7 +97,7 @@ const UserState = (props) => {
   };
   const setLoading = () => dispatch({ type: SET_LOADING });
   const clearChild = () => dispatch({ type: CLEAR_CHILD });
-  //  const clearErrors = () => dispatch({ type: CLEAR_ERRORS });
+
   return (
     <UserContext.Provider
       value={{

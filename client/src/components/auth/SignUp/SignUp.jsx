@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Formik, Form, Field } from 'formik';
 import {
   content,
@@ -13,6 +13,7 @@ import {
 import logo from '../../../assets/logo-purple.svg';
 import AuthContext from '../../../context/auth/authContext';
 import { SignUpSchema } from './SignUpUtils';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const SignUp = () => {
   const authContext = useContext(AuthContext);
@@ -28,6 +29,7 @@ const SignUp = () => {
           email: '',
           password: '',
           passwordConfirm: '',
+          recaptcha: '',
         }}
         validationSchema={SignUpSchema}
         onSubmit={(values) => {
@@ -36,11 +38,12 @@ const SignUp = () => {
             values.lastName,
             values.email,
             values.password,
-            values.passwordConfirm
+            values.passwordConfirm,
+            values.recaptcha
           );
         }}
       >
-        {({ errors, touched, isSubmitting }) => (
+        {({ errors, touched, setFieldValue }) => (
           <>
             <div>
               {Object.keys(errors).map((item) => {
@@ -99,7 +102,15 @@ const SignUp = () => {
                 placeholder='Confirm Password'
                 className={[input, password].join(' ')}
               />
-              <button type='submit' disabled={isSubmitting} className={button}>
+              <ReCAPTCHA
+                style={{ marginTop: '20px' }}
+                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                onChange={(e) => {
+                  setFieldValue('recaptcha', e);
+                }}
+                size={'normal'}
+              />
+              <button type='submit' className={button}>
                 Submit
               </button>
             </Form>
