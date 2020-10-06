@@ -4,7 +4,7 @@
   color: $bg-paper;
   background-color: $bg-default;
   @include flexy($direction: column, $wrap: nowrap);
-  height: 100vh;
+  height: 110vh;
   text-align: center;
 }
 
@@ -48,5 +48,5 @@
 
 .button {
   @include button;
-  margin-bottom: 5px;
+  margin: 8px;
 }
