@@ -62,21 +62,6 @@ const SignUp = () => {
                   </div>
                 );
               })}
-              <div
-                className={error}
-                style={{
-                  display:
-                    errors.passwordConfirm &&
-                    touched.passwordConfirm &&
-                    errors.passwordConfirm
-                      ? 'block'
-                      : 'none',
-                }}
-              >
-                {errors.passwordConfirm &&
-                  touched.passwordConfirm &&
-                  errors.passwordConfirm}
-              </div>
             </div>
             <Form className={form}>
               <Field

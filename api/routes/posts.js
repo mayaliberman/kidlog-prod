@@ -1,8 +1,8 @@
 const express = require('express');
-const { protect, restrictTo } = require('../controllers/authController');
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('cloudinary').v2;
+const { protect } = require('../controllers/authController');
 require('dotenv').config();
 
 cloudinary.config({
