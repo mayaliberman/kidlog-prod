@@ -16,6 +16,7 @@ import UserState from './context/user/UserState';
 import MyAccount from './components/user/MyAccount/MyAccount';
 import AddKid from './components/user/kid/AddKid/AddKid';
 import EditKid from './components/user/kid/EditKid/EditKid';
+import FilterPosts from './components/posts/FilterPosts/FilterPosts';
 import PrivateRoute from './components/PriveteRoute';
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
           <PostState>
             <Header />
             <Switch>
+              <Route exact path='/filter' component={FilterPosts} />
               <Route exact path='/' component={Home} />
               <Route exact path='/sign-in' component={SignIn} />
               <Route exact path='/sign-up' component={SignUp} />
