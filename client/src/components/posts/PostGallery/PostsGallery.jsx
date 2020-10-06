@@ -5,6 +5,7 @@ import AddPostButton from '../AddPostButton/AddPostButton';
 import AddPost from '../AddPost/AddPost';
 import PostFeedback from '../PostFeedback/PostFeedback';
 import FeedBackThankYou from '../FeedBackThankYou/FeedBackThankYou';
+import FilterPosts from '../FilterPosts/FilterPosts';
 import PostContext from '../../../context/post/postContext';
 import { getUser } from '../../../services/cookies';
 import { useHistory } from 'react-router-dom';
@@ -51,9 +52,7 @@ const PostsGallery = () => {
 
   return (
     <main className={container}>
-      {/* <div style={{ marginTop: '80px', color: 'black', width: '150px' }}>
-        <h1>Filter area</h1>
-      </div> */}
+      <FilterPosts />
       <div className={postGallery}>
         <AddPostButton togglePop={addPostButtonTogglePop} />
         {addButtonPopup && (

@@ -1,4 +1,10 @@
-import { GET_CHILD, SET_LOADING, UPDATE_USER, CLEAR_CHILD } from '../types';
+import {
+  GET_CHILD,
+  SET_LOADING,
+  UPDATE_USER,
+  CLEAR_CHILD,
+  USER_ERROR,
+} from '../types';
 
 export default (state, action) => {
   switch (action.type) {

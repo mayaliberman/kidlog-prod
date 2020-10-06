@@ -1,10 +1,14 @@
 @import '../../../styles/style.scss';
 
 .container {
-  //   width: 40%;
-  & h4 {
-    margin: 0px 0px 0px 0px;
-    color: $secondary-dark-grey;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    margin-top: 90px;
+    & h4 {
+      margin: 0px 0px 0px 0px;
+      color: $secondary-dark-grey;
+    }
   }
 }
 
@@ -20,10 +24,11 @@
 
   & label {
     padding-top: 20px;
+
     color: $secondary-dark-grey;
     cursor: pointer;
     position: relative;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
@@ -34,6 +39,7 @@ input[type='checkbox'] {
 
 .iconBox {
   display: flex;
+  align-items: center;
 
   & span {
     margin-left: 10px;
@@ -41,11 +47,11 @@ input[type='checkbox'] {
 }
 
 .avatar {
-  width: 19px;
-  height: 19px;
-  line-height: 19px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
   border-radius: 50%;
-  font-size: 12px;
+  font-size: 14px;
   color: $bg-paper;
   text-align: center;
   background: $primary-dark;

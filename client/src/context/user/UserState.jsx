@@ -18,6 +18,7 @@ const UserState = (props) => {
     isUpdated: false,
     user: {},
     child: [],
+    error: null,
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);

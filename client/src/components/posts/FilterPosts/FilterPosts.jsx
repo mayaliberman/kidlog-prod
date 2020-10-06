@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { getUser } from '../../../services/cookies';
 import {
   container,
   button,
@@ -6,6 +7,7 @@ import {
   iconBox,
   avatar,
 } from './FilterPosts.module.scss';
+import PostContext from '../../../context/post/postContext';
 import belt from '../../../assets/belt-1.svg';
 import brush from '../../../assets/brush-1.svg';
 import calculator from '../../../assets/calculator-1.svg';
@@ -14,6 +16,38 @@ import uparrow from '../../../assets/Up-arrow.svg';
 import downarrow from '../../../assets/Down-arrow.svg';
 
 const FilterPosts = () => {
+  const postContext = useContext(PostContext);
+  const { posts } = postContext;
+  let user = getUser();
+
+  useEffect(() => {
+    user = getUser();
+    if (user) {
+    }
+  }, [user, posts]);
+
+  const random_bg_color = () => {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  };
+  let arrayOfData = user.children.filter(
+    (kid) => (kid = kid.active === true)
+  ) || [{ name: '' }];
+
+  console.log(arrayOfData);
+  let checkboxes = arrayOfData.map((child) => (
+    <label>
+      <input type='checkbox' name='kid' value='music' />
+      <div className={iconBox}>
+        <div className={avatar} style={{ background: random_bg_color() }}>
+          {child.name.charAt(0)}
+        </div>
+        <span>{child.name}</span>
+      </div>
+    </label>
+  ));
   return (
     <div className={container}>
       <form>
@@ -51,7 +85,8 @@ const FilterPosts = () => {
         </div>
         <div className={category}>
           <h4>Filter by Kid</h4>
-          <label>
+          {checkboxes}
+          {/* <label>
             <input type='checkbox' name='kid' value='music' />
             <div className={iconBox}>
               <div className={avatar}>A</div>
@@ -66,7 +101,7 @@ const FilterPosts = () => {
               </div>
               <span>Rob</span>
             </div>
-          </label>
+          </label> */}
         </div>
         <div className={category}>
           <h4>Sort by Date</h4>
