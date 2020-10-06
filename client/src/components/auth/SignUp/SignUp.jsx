@@ -17,6 +17,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 const SignUp = () => {
   const authContext = useContext(AuthContext);
+  const siteKey = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
   return (
     <div className={content}>
@@ -89,7 +90,7 @@ const SignUp = () => {
               />
               <ReCAPTCHA
                 style={{ marginTop: '20px' }}
-                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                sitekey={siteKey}
                 onChange={(e) => {
                   setFieldValue('recaptcha', e);
                 }}
