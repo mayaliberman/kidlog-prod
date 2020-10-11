@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { getUser } from '../../../services/cookies';
 import {
   container,
@@ -16,15 +16,45 @@ import uparrow from '../../../assets/Up-arrow.svg';
 import downarrow from '../../../assets/Down-arrow.svg';
 
 const FilterPosts = () => {
-  const postContext = useContext(PostContext);
-  const { posts } = postContext;
   let user = getUser();
 
+  const postContext = useContext(PostContext);
+  const { posts, getPosts } = postContext;
+  const [lessonCategory, setLessonCategory] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
+
+  const updateFilterCategory = (e) => {
+    e.target.checked
+      ? setLessonCategory([...lessonCategory, e.target.value])
+      : setLessonCategory(
+          [...lessonCategory].filter((category) => category !== e.target.value)
+        );
+  };
+
+  const sortPostsDates = (e) => {
+    console.log(e.target.value);
+    const postsList = [...posts];
+    postsList.sort((a, b) => {
+      return e.target.value === 'New to Old'
+        ? new Date(b.createdAt) - new Date(a.createdAt)
+        : new Date(a.createdAt) - new Date(b.createdAt);
+    });
+    setFilteredPosts(postsList);
+  };
+
+  const onSubmit = (e) => {
+    const postList = [...posts];
+    console.log(Object.values(postList[2].lessonId.tags));
+    // lessonCategory.filter((e) => postList.lessonId.tags.indexOf(e) > -1);
+    // lessonCategory.filter((e) => e.lessonId.tags.every(c => lessonId.tags.include()));
+    // console.log(Object.keys(postList[0].lessonId.tags));
+    lessonCategory.filter((e) => Object.values(postList[0].lessonId.tags));
+  };
   useEffect(() => {
     user = getUser();
     if (user) {
     }
-  }, [user, posts]);
+  }, [user, posts, category]);
 
   const random_bg_color = () => {
     const r = Math.floor(Math.random() * 256);
@@ -36,9 +66,8 @@ const FilterPosts = () => {
     (kid) => (kid = kid.active === true)
   ) || [{ name: '' }];
 
-  console.log(arrayOfData);
   let checkboxes = arrayOfData.map((child) => (
-    <label>
+    <label key={child._id}>
       <input type='checkbox' name='kid' value='music' />
       <div className={iconBox}>
         <div className={avatar} style={{ background: random_bg_color() }}>
@@ -54,14 +83,24 @@ const FilterPosts = () => {
         <div className={category}>
           <h4>Filter by Category</h4>
           <label>
-            <input type='checkbox' name='music' value='music' />
+            <input
+              type='checkbox'
+              name='category'
+              value='music'
+              onChange={updateFilterCategory}
+            />
             <div className={iconBox}>
               <img src={guitar} alt='music-icon' />
               <span>Music</span>
             </div>
           </label>
           <label>
-            <input type='checkbox' name='karate' value='karate' />
+            <input
+              type='checkbox'
+              name='category'
+              value='karate'
+              onChange={updateFilterCategory}
+            />
             <div className={iconBox}>
               <img src={belt} alt='music-icon' />
               <span>Karate</span>
@@ -69,14 +108,24 @@ const FilterPosts = () => {
           </label>
 
           <label>
-            <input type='checkbox' name='logic' value='logic' />
+            <input
+              type='checkbox'
+              name='category'
+              value='logic'
+              onChange={updateFilterCategory}
+            />
             <div className={iconBox}>
               <img src={calculator} alt='music-icon' />
               <span>Logic</span>
             </div>
           </label>
           <label>
-            <input type='checkbox' name='drawing' value='drawing' />
+            <input
+              type='checkbox'
+              name='category'
+              value='drawing'
+              onChange={updateFilterCategory}
+            />
             <div className={iconBox}>
               <img src={brush} alt='music-icon' />
               <span>Drawing</span>
@@ -86,43 +135,40 @@ const FilterPosts = () => {
         <div className={category}>
           <h4>Filter by Kid</h4>
           {checkboxes}
-          {/* <label>
-            <input type='checkbox' name='kid' value='music' />
-            <div className={iconBox}>
-              <div className={avatar}>A</div>
-              <span>Ashley</span>
-            </div>
-          </label>
-          <label>
-            <input type='checkbox' name='kid' value='music' />
-            <div className={iconBox}>
-              <div className={avatar} style={{ background: 'pink' }}>
-                R
-              </div>
-              <span>Rob</span>
-            </div>
-          </label> */}
         </div>
         <div className={category}>
           <h4>Sort by Date</h4>
           <label>
-            <input type='checkbox' name='drawing' value='drawing' />
+            <input
+              type='checkbox'
+              name='date'
+              value='New to Old'
+              onChange={sortPostsDates}
+            />
             <div className={iconBox}>
               <img src={downarrow} alt='music-icon' />
               <span>New to Old</span>
             </div>
           </label>
           <label>
-            <input type='checkbox' name='drawing' value='drawing' />
+            <input
+              type='checkbox'
+              name='date'
+              value='Old to New'
+              onChange={sortPostsDates}
+            />
             <div className={iconBox}>
               <img src={uparrow} alt='music-icon' />
               <span>Old to New</span>
             </div>
           </label>
         </div>
-        {/* <button type='submit' className={button}>
-          Apply Filter
-        </button> */}
+        <div>
+          <button type='submit' onClick={onSubmit}>
+            Apply
+          </button>
+          <button onClick={() => getPosts()}>Clear</button>
+        </div>
       </form>
     </div>
   );

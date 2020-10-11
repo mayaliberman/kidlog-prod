@@ -1,6 +1,7 @@
 @import '../../../styles/style.scss';
 
 .container {
+  position: fixed;
   display: none;
   @media (min-width: 768px) {
     display: block;

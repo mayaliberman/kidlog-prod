@@ -25,7 +25,7 @@ exports.getUserPosts = asyncHandler(async (req, res, next) => {
   }
 
   const posts = await Post.find({ userId: req.user._id }).sort({
-    _id: -1,
+    createdAt: -1,
   });
 
   return res.json({
