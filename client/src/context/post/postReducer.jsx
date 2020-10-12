@@ -1,5 +1,6 @@
 import {
   GET_POSTS,
+  GET_FILTERED_POSTS,
   DELETE_POST,
   UPDATE_POST,
   SET_LOADING,
@@ -17,6 +18,12 @@ export default (state, action) => {
       return {
         ...state,
         posts: action.payload,
+        loading: false,
+      };
+    case GET_FILTERED_POSTS:
+      return {
+        ...state,
+        filteredPosts: action.payload,
         loading: false,
       };
     case GET_UNSPLASH_PHOTOS:

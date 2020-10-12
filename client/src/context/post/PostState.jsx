@@ -5,6 +5,7 @@ import postReducer from './postReducer';
 
 import {
   GET_POSTS,
+  GET_FILTERED_POSTS,
   GET_UNSPLASH_PHOTOS,
   SET_LOADING,
   DELETE_POST,
@@ -24,6 +25,7 @@ const unsplash = new Unsplash({
 const PostState = (props) => {
   const initialState = {
     posts: [],
+    filteredPosts: [],
     loading: true,
     photos: [],
     currentPost: {},
@@ -39,9 +41,16 @@ const PostState = (props) => {
     try {
       const response = await axios.get('/api/posts/myposts');
       dispatch({ type: GET_POSTS, payload: response.data.data });
+      dispatch({ type: GET_FILTERED_POSTS, payload: response.data.data });
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: err.response });
     }
+  };
+
+  const getFilteredPosts = (postsObj) => {
+    console.log(postsObj);
+    setLoading();
+    dispatch({ type: GET_FILTERED_POSTS, payload: postsObj });
   };
 
   const createPost = async (body) => {
@@ -144,6 +153,7 @@ const PostState = (props) => {
     <PostContext.Provider
       value={{
         posts: state.posts,
+        filteredPosts: state.filteredPosts,
         photos: state.photos,
         loading: state.loading,
         error: state.error,
@@ -152,6 +162,7 @@ const PostState = (props) => {
         currentPost: state.currentPost,
         getUnsplashPhoto,
         getPosts,
+        getFilteredPosts,
         updateDifficult,
         createPost,
         updatePost,

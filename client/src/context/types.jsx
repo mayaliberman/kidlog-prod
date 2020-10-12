@@ -1,6 +1,7 @@
 //POSTS TYPES
 
 export const GET_POSTS = 'GET_POSTS';
+export const GET_FILTERED_POSTS = 'GET_FILTERED_POSTS';
 export const GET_UNSPLASH_PHOTOS = 'GET_UNSPLASH_PHOTOS';
 export const REMOVE_POST = 'REMOVE_POST';
 export const CURRENT_POST = ' CURRENT_POST';

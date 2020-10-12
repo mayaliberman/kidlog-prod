@@ -15,7 +15,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'kidlog',
-    allowedFormats: ['jpg', 'jpeg', 'png'], // supports promises as well
+    allowedFormats: ['jpg', 'jpeg', 'png', 'mp4', 'mov'], // supports promises as well
     // public_id: (req, file) => 'computed-filename-using-request',
     type: 'authenticated',
   },

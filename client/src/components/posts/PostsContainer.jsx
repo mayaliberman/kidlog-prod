@@ -6,7 +6,14 @@ import PostContext from '../../context/post/postContext';
 import LazyLoad from 'react-lazyload';
 const PostsContainer = () => {
   const postContext = useContext(PostContext);
-  const { posts, photos, loading, getUnsplashPhoto, getPosts } = postContext;
+  const {
+    posts,
+    photos,
+    loading,
+    getUnsplashPhoto,
+    getPosts,
+    filteredPosts,
+  } = postContext;
   const { results } = photos;
   useEffect(() => {
     getUnsplashPhoto();
@@ -20,7 +27,7 @@ const PostsContainer = () => {
         <Spinner />
       </div>
     );
-  } else if (posts.length < 1) {
+  } else if (filteredPosts.length < 1) {
     return (
       <div style={{ textAlign: 'center' }}>
         <h2>No Posts Uploaded Yet</h2>
@@ -29,7 +36,7 @@ const PostsContainer = () => {
   } else {
     return (
       <div>
-        {posts.map((post, index) => {
+        {filteredPosts.map((post, index) => {
           let photo = results
             ? results[Math.floor(Math.random() * results.length)].urls.regular
             : Image;

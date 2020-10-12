@@ -27,7 +27,10 @@ const SUPPORTED_FORMATS = [
 
 const AddPostSchema = Yup.object().shape({
   desc: Yup.string().required('**Post Description is Required'),
-  lessonNum: Yup.number().required('**Lesson Number is Required'),
+  lessonNum: Yup.number()
+    .positive('**Please add number larger than 0')
+    .max(87, '**Please add number no more than 87')
+    .required('**Lesson Number is Required'),
   childId: Yup.string().required("**Child's Name is Required"),
 });
 

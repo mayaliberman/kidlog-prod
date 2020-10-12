@@ -19,9 +19,13 @@ const FilterPosts = () => {
   let user = getUser();
 
   const postContext = useContext(PostContext);
-  const { posts, getPosts } = postContext;
+  const { posts, getPosts, getFilteredPosts } = postContext;
   const [lessonCategory, setLessonCategory] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
+  const [sortPosts, setSortPosts] = useState('New to Old');
+  const [filterChild, setFilteredChild] = useState('');
+  useEffect(() => {
+    user = getUser();
+  }, [user, posts]);
 
   const updateFilterCategory = (e) => {
     e.target.checked
@@ -29,32 +33,62 @@ const FilterPosts = () => {
       : setLessonCategory(
           [...lessonCategory].filter((category) => category !== e.target.value)
         );
+
+    // const r = posts.filter((post) =>
+    //   post.lessonId.tags.every((c) => lessonCategory.includes(c))
+    // );
+    // console.log(r);
   };
 
   const sortPostsDates = (e) => {
-    console.log(e.target.value);
-    const postsList = [...posts];
-    postsList.sort((a, b) => {
-      return e.target.value === 'New to Old'
-        ? new Date(b.createdAt) - new Date(a.createdAt)
-        : new Date(a.createdAt) - new Date(b.createdAt);
-    });
-    setFilteredPosts(postsList);
+    setSortPosts(e.target.value);
   };
 
+  const getFilterChild = (e) => {
+    setFilteredChild(e.target.value);
+  };
   const onSubmit = (e) => {
-    const postList = [...posts];
-    console.log(Object.values(postList[2].lessonId.tags));
+    // const postList = [...posts];
+    // console.log(Object.values(postList[2].lessonId.tags));
     // lessonCategory.filter((e) => postList.lessonId.tags.indexOf(e) > -1);
     // lessonCategory.filter((e) => e.lessonId.tags.every(c => lessonId.tags.include()));
     // console.log(Object.keys(postList[0].lessonId.tags));
-    lessonCategory.filter((e) => Object.values(postList[0].lessonId.tags));
-  };
-  useEffect(() => {
-    user = getUser();
-    if (user) {
+    // lessonCategory.filter((e) => Object.values(postList[0].lessonId.tags));
+    e.preventDefault();
+
+    let postsList = [...posts];
+    let updatedFilteredPosts;
+    //Sort post by date
+    postsList.sort((a, b) => {
+      return sortPosts === 'New to Old'
+        ? new Date(b.createdAt) - new Date(a.createdAt)
+        : new Date(a.createdAt) - new Date(b.createdAt);
+    });
+
+    //filter posts by child's name
+    filterChild
+      ? (updatedFilteredPosts = postsList.filter(
+          (post) => post.childId.name === filterChild
+        ))
+      : (updatedFilteredPosts = postsList);
+
+    //filter posts by Category
+    if (lessonCategory.length > 0) {
+      const r = posts.filter((post) =>
+        post.lessonId.tags.every((c) => lessonCategory.includes(c))
+      );
+      updatedFilteredPosts = r;
     }
-  }, [user, posts, category]);
+    getFilteredPosts(updatedFilteredPosts);
+  };
+
+  const clearFilter = (e) => {
+    e.preventDefault();
+    setLessonCategory([]);
+    setSortPosts('New to Old');
+    setFilteredChild('');
+    getPosts();
+  };
 
   const random_bg_color = () => {
     const r = Math.floor(Math.random() * 256);
@@ -68,7 +102,12 @@ const FilterPosts = () => {
 
   let checkboxes = arrayOfData.map((child) => (
     <label key={child._id}>
-      <input type='checkbox' name='kid' value='music' />
+      <input
+        type='radio'
+        name='kid'
+        value={child.name}
+        onChange={getFilterChild}
+      />
       <div className={iconBox}>
         <div className={avatar} style={{ background: random_bg_color() }}>
           {child.name.charAt(0)}
@@ -140,7 +179,7 @@ const FilterPosts = () => {
           <h4>Sort by Date</h4>
           <label>
             <input
-              type='checkbox'
+              type='radio'
               name='date'
               value='New to Old'
               onChange={sortPostsDates}
@@ -152,7 +191,7 @@ const FilterPosts = () => {
           </label>
           <label>
             <input
-              type='checkbox'
+              type='radio'
               name='date'
               value='Old to New'
               onChange={sortPostsDates}
@@ -167,7 +206,7 @@ const FilterPosts = () => {
           <button type='submit' onClick={onSubmit}>
             Apply
           </button>
-          <button onClick={() => getPosts()}>Clear</button>
+          <button onClick={clearFilter}>Clear</button>
         </div>
       </form>
     </div>
